@@ -40,8 +40,6 @@ def pWarp(img,reverse=False,original_Dims=(1280,720)):
          [params.dst_width, params.dst_height],
          [0, params.dst_height]]
     )
-    print(source_points)
-    print(destination_points)
 
     if reverse:
         M = cv2.getPerspectiveTransform(destination_points, source_points)
@@ -71,6 +69,7 @@ def pWarp(img,reverse=False,original_Dims=(1280,720)):
 
 # --------------------------------------------------------TEST
 if __name__ == "__main__":
+    params.DEBUG_MODE = True
     img = cv2.imread("test_images/test2.jpg")
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     pWarp(img)

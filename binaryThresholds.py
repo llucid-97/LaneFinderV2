@@ -7,9 +7,9 @@ from scipy.ndimage.filters import maximum_filter
 class params():
     # Desired range ratios to strongest edge detected
 
-    sobelPosMin = 0.2
+    sobelPosMin = 0.1
 
-    sobelNegMin = -0.2
+    sobelNegMin = -0.3
 
     # Runtime Flags
     hls_YellowLow_thresholds = [10, 30, 0.2]
@@ -26,9 +26,13 @@ def colorFilter(img):
     width = hsv.shape[1]
     height = hsv.shape[0]
 
-    hsv[:,:,2] = maximum_filter(img[:, :, 2], size=(9, 9), mode='nearest')
+
+    # hsv[:,:,2] = maximum_filter(img[:, :, 2], size=(9, 9), mode='nearest')
 
     maxLum = np.max(hsv[:, :, 2])
+
+    localMaxima = maximum_filter(img[:, :, 2], size=(100, 200), mode='nearest')
+
     select_yellow = (hsv[:, :, 0] < params.hls_YellowHigh_thresholds[0]) & \
                     (hsv[:, :, 0] > params.hls_YellowLow_thresholds[0]) & \
                     (hsv[:, :, 1] < params.hls_YellowHigh_thresholds[1]) & \
@@ -46,12 +50,15 @@ def colorFilter(img):
     result[select_WY] = 1
 
     if params.DEBUG_MODE:
-        fig = plt.figure()
-        ax1 = plt.subplot(211)
-        plt.imshow(cv2.cvtColor(hsv, cv2.COLOR_HLS2RGB))
+        # fig = plt.figure()
+        ax1 = plt.subplot(131)
+        plt.imshow(cv2.cvtColor(hsv, cv2.COLOR_HSV2RGB))
         ax1.set_title("Hue")
-        ax2 = plt.subplot(212)
+        ax2 = plt.subplot(132)
         plt.imshow(result, cmap='gray')
+        ax2.set_title("Vibrance")
+        ax2 = plt.subplot(133)
+        plt.imshow(localMaxima, cmap='gray')
         ax2.set_title("Vibrance")
         plt.show()
 
@@ -83,15 +90,20 @@ def gradientFilter(img):
         1, 0
     )
     white = np.max(np.absolute(sobel))  # Strongest Edge
-    sobel = np.int8(128 * sobel / white)  # Quantise to range
-    white = 128
+    sobel = 128*sobel / white  # Quantise to range
 
     # Binary Threshold to select pixels within desired range
     posSobel = np.zeros_like(sobel)
     negSobel = np.zeros_like(sobel)
 
-    posSobel[(sobel >= white * params.sobelPosMin)] = 1
-    negSobel[(sobel <= white * params.sobelNegMin)] = 1
+    grey = np.mean(sobel[(sobel>0)])
+    print(grey)
+    posSobel[(sobel >= grey * params.sobelPosMin)] = 1
+    negSobel[(sobel <= grey * params.sobelNegMin)] = 1
+
+    negSobel = maximum_filter(negSobel,size=9)
+
+    posSobel[(negSobel == 0)] = 0
 
     if params.DEBUG_MODE:
         fig = plt.figure()
@@ -115,11 +127,17 @@ def gradientFilter(img):
         "0": sobel,
 
     }
-    return sobelImages
+    return posSobel
+
 
 # --------------------------------------------------------TESTS
 if __name__ == "__main__":
     params.DEBUG_MODE = True
-    img = cv2.imread("/home/geragi01/Pictures/Screenshot from 2018-01-30 22-42-03.png")
+
+    # img = cv2.imread("/home/geragi01/Pictures/Screenshot from 2018-01-30 22-42-03.png")
+    img = cv2.imread("/home/geragi01/Pictures/Screenshot from 2018-02-02 20-00-57.png")
+
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     # img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    gradientFilter(colorFilter(img))
+    gradientFilter(img)
+    # colorFilter(img)
