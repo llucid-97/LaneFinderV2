@@ -6,16 +6,16 @@ import matplotlib.pyplot as plt
 class params():
     # Parallelogram Crop
     horizon = 0.615
-    top_left = 0.429
+    top_left = 0.45
     hood_top = 0.916
-    bottom_left = 0
+    bottom_left = 0.1
 
     dst_width = 400
     dst_height = 720
     DEBUG_MODE = False
 
 
-def pWarp(img,reverse=False,original_Dims=(1280,720)):
+def pWarp(img, reverse=False, original_Dims=(1280, 720)):
     """
     Perspective transform to get bird's eye view
     :img: Input Image
@@ -24,15 +24,15 @@ def pWarp(img,reverse=False,original_Dims=(1280,720)):
     # img = np.array(img)
     x, y = img.shape[1::-1]
     if reverse:
-        x,y = original_Dims
+        x, y = original_Dims
 
     # It's important that the parallelogram is symmetric and centered
     # Because it's warping with respect to paralellogram
     source_points = np.float32(  # top left and clockwise
         [[x * params.top_left, y * params.horizon],
          [x - x * params.top_left, y * params.horizon],
-         [x, y * params.hood_top],
-         [0, y * params.hood_top]]
+         [x - x * params.bottom_left, y * params.hood_top],
+         [x * params.bottom_left, y * params.hood_top]]
     )
     destination_points = np.float32(  # top left and clockwise
         [[0, 0],
@@ -54,7 +54,7 @@ def pWarp(img,reverse=False,original_Dims=(1280,720)):
         img,
         M,
         # (x, y),
-        (out_x,out_y),
+        (out_x, out_y),
         flags=cv2.INTER_NEAREST)
     if params.DEBUG_MODE:
         fig = plt.figure()
@@ -66,6 +66,7 @@ def pWarp(img,reverse=False,original_Dims=(1280,720)):
         plt.imshow(warped)
         plt.show()
     return warped
+
 
 # --------------------------------------------------------TEST
 if __name__ == "__main__":

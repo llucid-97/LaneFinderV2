@@ -28,7 +28,7 @@ The files are detailed under `./writeup.md`
 ## How to Use: 
 git clone / download the repo and cd into it on a terminal.
 Run:
-> $ python3 videoPipeline.py -i "input_video".mp4 -o "output_video".mp4
+> $ python3 pipeline.py -i "input_video".mp4 -o "output_video".mp4
 
 replacing the parts in quotes with your filenames. By default (no args) it does the example ones
 

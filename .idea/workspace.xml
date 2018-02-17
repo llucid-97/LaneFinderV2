@@ -2,14 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d755aea-e669-4df9-b8c4-2a9cb63f46e4" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/output_videos/v1.mp4" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change beforePath="$PROJECT_DIR$/binaryThresholds.py" afterPath="$PROJECT_DIR$/binaryThresholds.py" />
+      <change beforePath="$PROJECT_DIR$/camera_undistort.py" afterPath="$PROJECT_DIR$/camera_undistort.py" />
+      <change beforePath="$PROJECT_DIR$/examples/perspectiveRoad.png" afterPath="$PROJECT_DIR$/examples/perspectiveRoad.png" />
       <change beforePath="$PROJECT_DIR$/interpreteFrame.py" afterPath="$PROJECT_DIR$/interpreteFrame.py" />
-      <change beforePath="$PROJECT_DIR$/output_videos/out.mp4" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/output_videos/out.mp4" afterPath="$PROJECT_DIR$/output_videos/out.mp4" />
+      <change beforePath="$PROJECT_DIR$/output_videos/v1.mp4" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/output_videos/v2.mp4" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/output_videos/v3.mp4" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/params.py" afterPath="" />
       <change beforePath="$PROJECT_DIR$/perspective_transform.py" afterPath="$PROJECT_DIR$/perspective_transform.py" />
-      <change beforePath="$PROJECT_DIR$/writeup_template.md" afterPath="$PROJECT_DIR$/writeup.md" />
+      <change beforePath="$PROJECT_DIR$/pipeline.py" afterPath="$PROJECT_DIR$/pipeline.py" />
+      <change beforePath="$PROJECT_DIR$/writeup.md" afterPath="$PROJECT_DIR$/writeup.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,21 +30,8 @@
         <entry file="file://$PROJECT_DIR$/writeup.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="214">
-                <caret line="24" column="66" lean-forward="false" selection-start-line="24" selection-start-column="66" selection-end-line="24" selection-end-column="66" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="372">
-                <caret line="25" column="43" lean-forward="false" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
+              <first_editor relative-caret-position="49">
+                <caret line="164" column="33" lean-forward="true" selection-start-line="164" selection-start-column="33" selection-end-line="164" selection-end-column="33" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -49,13 +42,10 @@
       <file leaf-file-name="interpreteFrame.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interpreteFrame.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="281" column="15" lean-forward="false" selection-start-line="281" selection-start-column="15" selection-end-line="281" selection-end-column="15" />
+            <state relative-caret-position="1008">
+              <caret line="140" column="11" lean-forward="false" selection-start-line="140" selection-start-column="11" selection-end-line="140" selection-end-column="11" />
               <folding>
                 <element signature="e#0#56#0" expanded="true" />
-                <element signature="e#279#536#0" expanded="false" />
-                <element signature="e#2917#2944#0" expanded="false" />
-                <element signature="e#5188#6111#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -64,8 +54,8 @@
       <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="306">
+              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -76,12 +66,11 @@
       <file leaf-file-name="binaryThresholds.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/binaryThresholds.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1044">
-              <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+            <state relative-caret-position="-14">
+              <caret line="25" column="24" lean-forward="false" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <element signature="e#479#2236#0" expanded="false" />
-                <element signature="e#2610#2698#0" expanded="false" />
+                <element signature="e#2287#2375#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -90,8 +79,8 @@
       <file leaf-file-name="perspective_transform.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/perspective_transform.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="702">
-              <caret line="41" column="5" lean-forward="false" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+            <state relative-caret-position="126">
+              <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -118,6 +107,16 @@
       <find>valid</find>
       <find>pow</find>
       <find>confide</find>
+      <find>crop</find>
+      <find>succ</find>
+      <find>debugI</find>
+      <find>gamma</find>
+      <find>gam</find>
+      <find>yBir</find>
+      <find>ax</find>
+      <find>curva</find>
+      <find>lines.center</find>
+      <find>curvat</find>
     </findStrings>
     <replaceStrings>
       <replace>hls</replace>
@@ -136,15 +135,15 @@
       <list>
         <option value="$PROJECT_DIR$/params.py" />
         <option value="$PROJECT_DIR$/camCalibration.py" />
-        <option value="$PROJECT_DIR$/camera_undistort.py" />
         <option value="$PROJECT_DIR$/pipeLine.py" />
-        <option value="$PROJECT_DIR$/pipeline.py" />
         <option value="$PROJECT_DIR$/gradientFilter.py" />
-        <option value="$PROJECT_DIR$/perspective_transform.py" />
-        <option value="$PROJECT_DIR$/binaryThresholds.py" />
-        <option value="$PROJECT_DIR$/interpreteFrame.py" />
         <option value="$PROJECT_DIR$/writeup_template.md" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/camera_undistort.py" />
+        <option value="$PROJECT_DIR$/binaryThresholds.py" />
+        <option value="$PROJECT_DIR$/perspective_transform.py" />
+        <option value="$PROJECT_DIR$/interpreteFrame.py" />
+        <option value="$PROJECT_DIR$/pipeline.py" />
         <option value="$PROJECT_DIR$/writeup.md" />
       </list>
     </option>
@@ -154,6 +153,25 @@
     <option name="y" value="-4" />
     <option name="width" value="1855" />
     <option name="height" value="1084" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Spelling</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Spelling</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -195,6 +213,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///sdcard/ihexx/LaneLines/writeup_template.md" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -309,9 +328,9 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.pipeline" />
-        <item index="1" class="java.lang.String" itemvalue="Python.gradientFilter" />
-        <item index="2" class="java.lang.String" itemvalue="Python.pipeLine" />
-        <item index="3" class="java.lang.String" itemvalue="Python.perspective_transform" />
+        <item index="1" class="java.lang.String" itemvalue="Python.pipeLine" />
+        <item index="2" class="java.lang.String" itemvalue="Python.perspective_transform" />
+        <item index="3" class="java.lang.String" itemvalue="Python.gradientFilter" />
         <item index="4" class="java.lang.String" itemvalue="Python.camCalibration" />
       </list>
     </recent_temporary>
@@ -342,15 +361,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <frame x="65" y="-4" width="1857" height="1092" extended-state="6" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1430131" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1430131" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30994764" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30994764" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -368,12 +388,34 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="10" />
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/interpreteFrame.py</url>
+          <line>364</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/interpreteFrame.py</url>
+          <line>307</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/interpreteFrame.py</url>
+          <line>135</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="23" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>histogram</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>lines.previousWindows[j].leftx_current</expression-string>
         <language-id>Python</language-id>
@@ -414,14 +456,60 @@
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>histogram.shape</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/writeup.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="450">
+            <caret line="25" column="43" lean-forward="false" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/binaryThresholds.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1044">
+          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#2287#2375#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/perspective_transform.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="41" column="5" lean-forward="false" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="576">
@@ -449,8 +537,7 @@
           <caret line="117" column="22" lean-forward="false" selection-start-line="117" selection-start-column="22" selection-end-line="117" selection-end-column="22" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#479#2236#0" expanded="false" />
-            <element signature="e#2610#2698#0" expanded="false" />
+            <element signature="e#2287#2375#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -459,9 +546,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="972">
           <caret line="56" column="10" lean-forward="false" selection-start-line="56" selection-start-column="10" selection-end-line="56" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#18#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -471,9 +556,6 @@
           <caret line="82" column="67" lean-forward="false" selection-start-line="82" selection-start-column="67" selection-end-line="82" selection-end-column="67" />
           <folding>
             <element signature="e#0#56#0" expanded="true" />
-            <element signature="e#279#536#0" expanded="false" />
-            <element signature="e#2917#2944#0" expanded="false" />
-            <element signature="e#5188#6111#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -515,31 +597,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/params.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.local/lib/python3.5/site-packages/numpy/lib/polynomial.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="554" column="0" lean-forward="false" selection-start-line="554" selection-start-column="0" selection-end-line="554" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/camera_undistort.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1505">
-          <caret line="102" column="4" lean-forward="false" selection-start-line="102" selection-start-column="4" selection-end-line="102" selection-end-column="4" />
-          <folding>
-            <element signature="e#250#268#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.local/lib/python3.5/site-packages/numpy/core/fromnumeric.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
@@ -552,69 +609,98 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="3845" column="4" lean-forward="false" selection-start-line="3845" selection-start-column="4" selection-end-line="3845" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/params.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline.py">
+    <entry file="file://$PROJECT_DIR$/examples/example.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="144">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/camera_undistort.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-325">
+          <caret line="69" column="36" lean-forward="true" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#250#268#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/perspective_transform.py">
+    <entry file="file://$USER_HOME$/.local/lib/python3.5/site-packages/numpy/lib/polynomial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="41" column="5" lean-forward="false" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+        <state relative-caret-position="210">
+          <caret line="554" column="0" lean-forward="false" selection-start-line="554" selection-start-column="0" selection-end-line="554" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/binaryThresholds.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1044">
-          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+        <state relative-caret-position="-14">
+          <caret line="25" column="24" lean-forward="false" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#479#2236#0" expanded="false" />
-            <element signature="e#2610#2698#0" expanded="false" />
+            <element signature="e#2287#2375#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interpreteFrame.py">
+    <entry file="file://$PROJECT_DIR$/perspective_transform.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="281" column="15" lean-forward="false" selection-start-line="281" selection-start-column="15" selection-end-line="281" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-            <element signature="e#279#536#0" expanded="false" />
-            <element signature="e#2917#2944#0" expanded="false" />
-            <element signature="e#5188#6111#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="126">
+          <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="372">
-            <caret line="25" column="43" lean-forward="false" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
+          <first_editor relative-caret-position="214">
+            <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
             <folding />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interpreteFrame.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1008">
+          <caret line="140" column="11" lean-forward="false" selection-start-line="140" selection-start-column="11" selection-end-line="140" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/writeup.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="214">
-            <caret line="24" column="66" lean-forward="false" selection-start-line="24" selection-start-column="66" selection-end-line="24" selection-end-column="66" />
+          <first_editor relative-caret-position="49">
+            <caret line="164" column="33" lean-forward="true" selection-start-line="164" selection-start-column="33" selection-end-line="164" selection-end-column="33" />
             <folding />
           </first_editor>
           <second_editor />

@@ -12,11 +12,11 @@ class params():
     sobelNegMin = -0.3
 
     # Runtime Flags
-    hls_YellowLow_thresholds = [10, 30, 0.2]
-    hls_YellowHigh_thresholds = [30, 255, 1]
+    hls_YellowLow_thresholds = [15, 125, 125]
+    hls_YellowHigh_thresholds = [60, 256, 256]
 
-    hls_WhiteLow_thresholds = [0, 0, 0.8]
-    hls_WhiteHigh_thresholds = [255, 15, 1]
+    hls_WhiteLow_thresholds = [0, -1, 165]
+    hls_WhiteHigh_thresholds = [0, 20, 256]
     DEBUG_MODE = False
 
 
@@ -26,10 +26,10 @@ def colorFilter(img):
     width = hsv.shape[1]
     height = hsv.shape[0]
 
-
     # hsv[:,:,2] = maximum_filter(img[:, :, 2], size=(9, 9), mode='nearest')
 
     maxLum = np.max(hsv[:, :, 2])
+    print("maxLum", maxLum)
 
     localMaxima = maximum_filter(img[:, :, 2], size=(100, 200), mode='nearest')
 
@@ -37,32 +37,22 @@ def colorFilter(img):
                     (hsv[:, :, 0] > params.hls_YellowLow_thresholds[0]) & \
                     (hsv[:, :, 1] < params.hls_YellowHigh_thresholds[1]) & \
                     (hsv[:, :, 1] > params.hls_YellowLow_thresholds[1]) & \
-                    (hsv[:, :, 2] < params.hls_YellowHigh_thresholds[2] * maxLum) & \
-                    (hsv[:, :, 2] > params.hls_YellowLow_thresholds[2] * maxLum)
+                    (hsv[:, :, 2] < params.hls_YellowHigh_thresholds[2]) & \
+                    (hsv[:, :, 2] > params.hls_YellowLow_thresholds[2])
 
     select_white = (hsv[:, :, 1] < params.hls_WhiteHigh_thresholds[1]) & \
                    (hsv[:, :, 1] > params.hls_WhiteLow_thresholds[1]) & \
-                   (hsv[:, :, 2] < params.hls_WhiteHigh_thresholds[2] * maxLum) & \
-                   (hsv[:, :, 2] > params.hls_WhiteLow_thresholds[2] * maxLum)
+                   (hsv[:, :, 2] < params.hls_WhiteHigh_thresholds[2]) & \
+                   (hsv[:, :, 2] > params.hls_WhiteLow_thresholds[2])
 
     select_WY = select_white | select_yellow
-    result = np.zeros_like(hsv[:, :, 0])
-    result[select_WY] = 1
+    result0 = np.zeros_like(hsv[:, :, 0])
+    result1 = np.zeros_like(hsv[:, :, 0])
 
-    if params.DEBUG_MODE:
-        # fig = plt.figure()
-        ax1 = plt.subplot(131)
-        plt.imshow(cv2.cvtColor(hsv, cv2.COLOR_HSV2RGB))
-        ax1.set_title("Hue")
-        ax2 = plt.subplot(132)
-        plt.imshow(result, cmap='gray')
-        ax2.set_title("Vibrance")
-        ax2 = plt.subplot(133)
-        plt.imshow(localMaxima, cmap='gray')
-        ax2.set_title("Vibrance")
-        plt.show()
+    result1[select_white] = 1
+    result0[select_yellow] = 1
 
-    return result
+    return result0, result1
 
     # Now we have grey image. Hist EQ to ensure contrast/lighting issues
     # dont mess up our thresholds
@@ -90,18 +80,18 @@ def gradientFilter(img):
         1, 0
     )
     white = np.max(np.absolute(sobel))  # Strongest Edge
-    sobel = 128*sobel / white  # Quantise to range
+    sobel = 128 * sobel / white  # Quantise to range
 
     # Binary Threshold to select pixels within desired range
     posSobel = np.zeros_like(sobel)
     negSobel = np.zeros_like(sobel)
 
-    grey = np.mean(sobel[(sobel>0)])
+    grey = np.mean(sobel[(sobel > 0)])
     print(grey)
     posSobel[(sobel >= grey * params.sobelPosMin)] = 1
     negSobel[(sobel <= grey * params.sobelNegMin)] = 1
 
-    negSobel = maximum_filter(negSobel,size=9)
+    negSobel = maximum_filter(negSobel, size=9)
 
     posSobel[(negSobel == 0)] = 0
 

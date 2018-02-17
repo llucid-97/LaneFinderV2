@@ -10,8 +10,9 @@ import cv2
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import os
-import params as GlobalParams
-class params():
+
+
+class params:
     # Runtime Flags
     DEBUG_MODE = False
 
@@ -22,7 +23,8 @@ class params():
 
     # Files
     imgDir = "camera_cal"  # Camera Calibration images directory
-    repoRoot = GlobalParams.repoRoot
+    repoRoot = os.path.dirname(os.path.realpath(__file__))
+
 
 def getCamMatrix():
     imagePoints = []  # 2D points where the corners appear in image
@@ -50,7 +52,7 @@ def getCamMatrix():
                 (params.numX, params.numY),
                 None
             )
-            if ret == True:
+            if ret is True:
                 shape = img.shape[:2][::-1]
                 if params.DEBUG_MODE and not skip:
                     cv2.drawChessboardCorners(
@@ -109,5 +111,3 @@ def undistort(img, camParamDict):
         camParamDict["camMatrix"],
     )
     return undistorted
-
-

@@ -22,7 +22,7 @@ The goals / steps of this project are the following:
 [image3]: ./examples/sobel.png "Binary Example"
 [image4]: ./examples/perspectiveRoad.png "Warp Example"
 [image5]: ./examples/runTime%20Debug.png "Fit Visual"
-[image6]: ./examples/Screenshot%20from%202018-02-03%2021-04-41.png "Output"
+[image6]: ./examples/Screenshot%20from%202018-02-17%2018-17-24.png "Output"
 [image7]: ./examples/chessBoard.png "Undistorted"
 [video1]: ./project_video.mp4 "Video"
 
@@ -74,10 +74,10 @@ While subtle, it is easier to spot the differences if you look around the image 
 Color and gradient thresholds are implemented in `binaryThresholds.py`
 
 These search the entire image for pixels that meet certain criteria.
-I calibrated the search criteria to match yellow pixels and white pixels and generate a binary image where their locations are marked with 1, and all that don't meet this are marked with zero
- 
-Gradient thresholds were checked on a sobel-filtered image, but these were not used because in the test video, they added no useful data and only made false positives more prominent.
 
+I generate **2 separate binary images**: 1 for selecting white pixels, and one for yellow.
+ 
+Gradient thresholds are implemented to meet the Rubric, but not used in the pipeline; their addition only made it more difficult to match the lines
 
 ![alt text][image3]
 
@@ -105,10 +105,10 @@ This resulted in the following source and destination points:
  
 | Source        | Destination   | 
 |:-------------:|:-------------:| 
-| 550, 443      | 0, 0        | 
-| 730, 443      | 400, 0      |
-| 1280, 659     | 400, 720      |
-| 0, 659        | 0, 720        |
+| 576, 432      | 0, 0        | 
+| 704, 432      | 400, 0      |
+| 1152, 659     | 400, 720      |
+| 128, 659      | 0, 720        |
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
 
@@ -131,14 +131,20 @@ The location of all pixels inside windows are extracted, and the numpy polyfit f
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in lines *267* through *285* in function `getLanes()` in `interpreteFrame.py`
+I did this in lines **322** through **336** in function `getLanes()` in `interpreteFrame.py`
 
-It follows the linear approximation method shown in lesson 35 of the CarND Submodule.
+It follows the linear approximation method shown in lesson 35 of the Advanced Lane Finding Submodule.
 
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
+The pWarp() function has a flag to reverse the perspective transform.
+
+This is used to transform the pink highlight (see below) of the detected lane back to the right perspective in the main loop in `interpreteFrame()`
+
+The result is then added to the original image with `cv2.addWeighted()`
+
+Here is an example of my result on a test image:
 
 ![alt text][image6]
 
