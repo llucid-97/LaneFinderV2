@@ -12,7 +12,7 @@ class params():
     sobelNegMin = -0.3
 
     # Runtime Flags
-    hls_YellowLow_thresholds = [15, 125, 125]
+    hls_YellowLow_thresholds = [15, 100, 125]
     hls_YellowHigh_thresholds = [60, 256, 256]
 
     hls_WhiteLow_thresholds = [0, -1, 165]

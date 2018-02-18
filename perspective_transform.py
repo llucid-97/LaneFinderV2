@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 class params():
     # Parallelogram Crop
     horizon = 0.615
-    top_left = 0.45
+    top_left = 0.43
     hood_top = 0.916
     bottom_left = 0.1
 

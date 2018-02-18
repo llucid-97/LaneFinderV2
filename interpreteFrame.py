@@ -35,7 +35,7 @@ class Params:
     imgDir = 'test_images'
 
     # Crop DIMS
-    yBirdEyeCrop = 100
+    yBirdEyeCrop = 0
     DEBUG_MODE = False
     PLOT_AT_RUNTIME = True
     fig = plt.figure()
@@ -45,22 +45,24 @@ class linePair:
     global_step = 0  # What frame we are on
 
     # Sliding Window Parameters
-    nwindows = 9
+    nwindows = 20
     window_height = None
     previousWindows = []
 
     # Current Line Params
-    left_fit = None
-    right_fit = None
+    left_fit = np.array([0, 0, 0])
+    right_fit = np.array([0, 0, 0])
 
     center = None
     curvature = None
 
 
 lines = linePair()
+lane_xDim, lane_yDim = 0, 0
 
 
 def interpreteFrame(img):
+    global lane_xDim
     # 0: Undistort
     yDim, xDim, _ = np.shape(img)
     undistorted = undistort(img, Params.camParams)
@@ -76,7 +78,7 @@ def interpreteFrame(img):
     # 3: Color Filter
     yellow, white = colorFilter(birdEye)
 
-    # 4: Gradient Filter (Not Used, just to show that I can.)
+    # 4: Gradient Filter (Not Used, just here to show it was created)
     # sobel = gradientFilter(birdEye)
 
     # 5: Get Lanes
@@ -91,7 +93,7 @@ def interpreteFrame(img):
     laneGlowPixels = np.nonzero(laneGlow[int(ptParams.hood_top * yDim) - 5, :, 2])
     newCenter = np.mean(laneGlowPixels)
 
-    # Assign or smooth
+    # Assign or smoothen
     if lines.center is None:
         lines.center = newCenter
     else:
@@ -99,14 +101,16 @@ def interpreteFrame(img):
         lines.center = ((1 - gamma) * lines.center) + \
                        (gamma * newCenter)
 
-    print("Center", lines.center)
     output = cv2.addWeighted(undistorted, 1, laneGlow, 0.4, 0)
 
     text = "Radius of Curvature: {} m".format(int(lines.curvature))
-
     cv2.putText(output, text, (100, 450), cv2.FONT_HERSHEY_DUPLEX,
                 1, (255, 0, 0), 1)
-    text = "Distance to Center: {0:.2f} m".format(((xDim / 2) - lines.center) * (3.7 / xDim), )
+
+    text = "Distance to Center: {0:.2f} m".format(
+        ((xDim / 2) - lines.center)  # pixel distance of (Image center - line center)
+        * (3.7 / lane_xDim)  # meters of lane / pixels of lane
+    )
     cv2.putText(output, text, (100, 420), cv2.FONT_HERSHEY_DUPLEX,
                 1, (255, 125, 0), 1)
     if Params.PLOT_AT_RUNTIME:
@@ -133,18 +137,20 @@ def sigmoid(x):
 
 def getLanes(yellow_binary, white_binary):
     # Naming Parameters
-    xDim, yDim = yellow_binary.shape[1::-1]
-    debugImage = np.dstack((white_binary, yellow_binary+yellow_binary, white_binary)) * 127
+    global lane_xDim, lane_yDim
+    debugImage = np.dstack((white_binary, yellow_binary + yellow_binary, white_binary)) * 127
 
     if lines.global_step == 0:
+        lane_xDim, lane_yDim = yellow_binary.shape[1::-1]
+
         # Get Histogram peaks
-        histogram = np.sum(yellow_binary[int(yDim / 2):, :], axis=0)
+        histogram = np.sum(yellow_binary[int(lane_yDim / 2):, :], axis=0)
         yellow_x_base = np.argmax(histogram)
 
-        histogram = np.sum(white_binary[int(yDim / 2):, :], axis=0)
+        histogram = np.sum(white_binary[int(lane_yDim / 2):, :], axis=0)
         white_x_base = np.argmax(histogram)
 
-        lines.window_height = np.int((yDim - Params.yBirdEyeCrop
+        lines.window_height = np.int((lane_yDim - Params.yBirdEyeCrop
                                       ) / lines.nwindows)
 
         yellow_current = yellow_x_base
@@ -226,7 +232,7 @@ def getLanes(yellow_binary, white_binary):
             window.margin_left = 20
         else:
             # Expand search
-            window.margin_left = 30
+            window.margin_left = 40
             # if lines.global_step != 0:
             #     window.yellow_current = window.white_current + int(lines.left_fit[0] * window.y_low ** 2 +
             #                                                        lines.left_fit[1] * window.y_low +
@@ -246,7 +252,7 @@ def getLanes(yellow_binary, white_binary):
             window.margin_right = 20
         else:
             # Expand search, move window toward last known valid windows
-            window.margin_right = 60
+            window.margin_right = 40
             # if lines.global_step != 0:
             #     window.white_current = window.white_current + int(lines.right_fit[0] * window.y_low ** 2 +
             #                                                         lines.right_fit[1] * window.y_low +
@@ -280,8 +286,8 @@ def getLanes(yellow_binary, white_binary):
     rightx = w_nonzero[1][right_lane_inds]
     righty = w_nonzero[0][right_lane_inds]
 
-    ym_per_pix = 30 / yDim  # meters per pixel in y dimension
-    xm_per_pix = 3.7 / xDim  # meters per pixel in x dimension
+    ym_per_pix = 30 / lane_yDim  # meters per pixel in y dimension
+    xm_per_pix = 3.7 / lane_xDim  # meters per pixel in x dimension
 
     # Fit a second order polynomial to each (to pixels for display)
     if (numValidL > 4):
@@ -293,7 +299,7 @@ def getLanes(yellow_binary, white_binary):
         Params.darkMode = True
         tmp_left_fit = lines.left_fit
 
-    if (numValidR > 4):
+    if (numValidR > 2):
         tmp_right_fit = np.polyfit(righty, rightx, 2)
         if lines.global_step == 0:
             lines.right_fit = tmp_right_fit
@@ -311,13 +317,13 @@ def getLanes(yellow_binary, white_binary):
     gamma = 0.2
     lines.left_fit = ((1 - gamma) * lines.left_fit) + \
                      ((gamma) * tmp_left_fit)
-    lines.right_fit = ((1 - gamma ) * lines.right_fit) + \
+    lines.right_fit = ((1 - gamma) * lines.right_fit) + \
                       ((gamma) * tmp_right_fit)
 
     # 2: Calculate the new radii of curvature
-    left_curverad = ((1 + (2 * left_fit_cr[0] * yDim * ym_per_pix + left_fit_cr[1]) ** 2) ** 1.5) / np.absolute(
+    left_curverad = ((1 + (2 * left_fit_cr[0] * lane_yDim * ym_per_pix + left_fit_cr[1]) ** 2) ** 1.5) / np.absolute(
         2 * left_fit_cr[0])
-    right_curverad = ((1 + (2 * right_fit_cr[0] * yDim * ym_per_pix + right_fit_cr[1]) ** 2) ** 1.5) / np.absolute(
+    right_curverad = ((1 + (2 * right_fit_cr[0] * lane_yDim * ym_per_pix + right_fit_cr[1]) ** 2) ** 1.5) / np.absolute(
         2 * right_fit_cr[0])
 
     # 3: Merge and Temporal Filter
@@ -336,8 +342,8 @@ def getLanes(yellow_binary, white_binary):
     # Draw lines onto image
     outImage = np.zeros_like(debugImage)
 
-    ploty = np.linspace(0,  # Params.yBirdEyeCrop,
-                        yDim - 1, yDim)
+    ploty = np.linspace(Params.yBirdEyeCrop,
+                        lane_yDim - 1, lane_yDim)
 
     left_fitx = np.array(lines.left_fit[0] * ploty ** 2 + lines.left_fit[1] * ploty + lines.left_fit[2]).astype(int)
     right_fitx = np.array(lines.right_fit[0] * ploty ** 2 + lines.right_fit[1] * ploty + lines.right_fit[2]).astype(int)
